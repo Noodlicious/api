@@ -13,7 +13,5 @@ namespace NoodleApi.Models
         public string Brand { get; set; }
         public string Flavor { get; set; }
         public string ImgUrl { get; set; }
-        public long Ratings { get; set; }
-        public long Likes { get; set; }
     }
 }

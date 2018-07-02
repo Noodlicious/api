@@ -14,6 +14,10 @@ namespace NoodleApi.Controllers
     {
         private readonly NoodleContext _context;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public NoodleController(NoodleContext context)
         {
             _context = context;
@@ -33,20 +37,34 @@ namespace NoodleApi.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<List<Noodle>> GetAll()
         {
             return _context.Noodles.ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetNoodle")]
         public async Task<ActionResult<Noodle>> GetById(long id)
         {
-            var item = await _context.Noodles.FindAsync(id);
-            if (item == null) return NotFound();
-            return item;
+            var noodle = await _context.Noodles.FindAsync(id);
+            if (noodle == null) return NotFound();
+            return noodle;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noodle"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Noodle noodle)
         {
@@ -54,6 +72,45 @@ namespace NoodleApi.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtRoute("GetNoodle", new { id = noodle.Id }, noodle);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="noodle"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id, [FromBody]Noodle noodle)
+        {
+            var dbNoodle = await _context.Noodles.FindAsync(id);
+            if (dbNoodle == null) return NotFound();
+
+            dbNoodle.Brand = noodle.Brand;
+            dbNoodle.Country = noodle.Country;
+            dbNoodle.Flavor = noodle.Flavor;
+            dbNoodle.ImgUrl = noodle.ImgUrl;
+            dbNoodle.Name = noodle.Name;
+
+            _context.Noodles.Update(dbNoodle);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var noodle = await _context.Noodles.FindAsync(id);
+            if (noodle == null) return NotFound();
+
+            _context.Noodles.Remove(noodle);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
