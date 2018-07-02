@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NoodleApi.Models;
 using Microsoft.Extensions.Configuration;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace NoodleApi
 {
@@ -27,11 +28,22 @@ namespace NoodleApi
             services.AddDbContext<NoodleContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Noodlicious API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Noodlicious API V1");
+            });
+
             app.UseMvc();
 
             if (env.IsDevelopment())
@@ -39,9 +51,10 @@ namespace NoodleApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.Run(context =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                context.Response.Redirect("swagger");
+                return Task.CompletedTask;
             });
         }
     }
