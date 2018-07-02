@@ -26,7 +26,7 @@ namespace NoodleApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NoodleContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
@@ -51,10 +51,9 @@ namespace NoodleApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(context =>
+            app.Run(async (context) =>
             {
-                context.Response.Redirect("swagger");
-                return Task.CompletedTask;
+                await context.Response.WriteAsync("Noodlicious!");
             });
         }
     }
