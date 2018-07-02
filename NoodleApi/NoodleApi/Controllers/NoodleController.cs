@@ -15,32 +15,18 @@ namespace NoodleApi.Controllers
         private readonly NoodleContext _context;
 
         /// <summary>
-        /// 
+        /// Creates a new instance of the NoodleController class.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The Noodle database context.</param>
         public NoodleController(NoodleContext context)
         {
             _context = context;
-
-            if (_context.Noodles.Count() == 0)
-            {
-                _context.Noodles.Add(new Noodle
-                {
-                    Name = "Chapagetti",
-                    Brand = "Nongshim",
-                    ImgUrl = "https://i5.walmartimages.com/asr/ca45cf0b-f851-4d3e-a302-e36af6298a33_1.be1e986a037214b0cd5d2f7f96def4e7.jpeg",
-                    Country = "South Korea",
-                    Flavor = "Chajang"
-                });
-
-                _context.SaveChanges();
-            }
         }
 
         /// <summary>
-        /// 
+        /// Gets a list of all noodles in the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of noodles.</returns>
         [HttpGet]
         public ActionResult<List<Noodle>> GetAll()
         {
@@ -48,10 +34,10 @@ namespace NoodleApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets a noodle by its ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The noodle's ID</param>
+        /// <returns>A noodle with a matching ID.</returns>
         [HttpGet("{id}", Name = "GetNoodle")]
         public async Task<ActionResult<Noodle>> GetById(long id)
         {
@@ -61,10 +47,10 @@ namespace NoodleApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Adds a noodle to the database.
         /// </summary>
-        /// <param name="noodle"></param>
-        /// <returns></returns>
+        /// <param name="noodle">The noodle being added.</param>
+        /// <returns>A 201 response.</returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Noodle noodle)
         {
@@ -75,11 +61,11 @@ namespace NoodleApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates a noodle's information.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="noodle"></param>
-        /// <returns></returns>
+        /// <param name="id">The ID of the noodle being updated.</param>
+        /// <param name="noodle">A noodle object with updated information.</param>
+        /// <returns>A 204 response (if the ID is found).</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, [FromBody]Noodle noodle)
         {
@@ -98,10 +84,10 @@ namespace NoodleApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Removes a noodle from the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The ID of the noodle to be removed.</param>
+        /// <returns>A 204 response (if the ID is found).</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {

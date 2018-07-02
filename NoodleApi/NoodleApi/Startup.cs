@@ -25,7 +25,7 @@ namespace NoodleApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NoodleContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
         }
 
