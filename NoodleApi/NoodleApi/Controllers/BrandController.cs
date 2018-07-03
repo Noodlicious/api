@@ -28,7 +28,7 @@ namespace NoodleApi.Controllers
 
         //get one
         [HttpGet("{id}", Name = "GetBrand")]
-        public async Task<ActionResult<Brand>> GetByID(long id)
+        public async Task<ActionResult<Brand>> GetByID(int id)
         {
             Brand brand = await _context.Brands.FindAsync(id);
             if (brand == null) return NotFound();
@@ -49,7 +49,7 @@ namespace NoodleApi.Controllers
 
         //update
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, [FromBody]Brand brand)
+        public async Task<IActionResult> Update(int id, [FromBody]Brand brand)
         {
             Brand dbBrand = await _context.Brands.FindAsync(id);
             if (dbBrand == null) return NotFound();
@@ -69,7 +69,7 @@ namespace NoodleApi.Controllers
 
         //delete
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(int id)
         {
             Brand brand = _context.Brands.Find(id);
             if (brand == null) return NotFound();
@@ -80,6 +80,7 @@ namespace NoodleApi.Controllers
             return NoContent();
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public bool BrandExists(string name)
         {
             List<string> names = (from brand in _context.Brands

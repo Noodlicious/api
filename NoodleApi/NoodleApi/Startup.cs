@@ -54,6 +54,7 @@ namespace NoodleApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Noodlicious API V1");
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseMvc();
