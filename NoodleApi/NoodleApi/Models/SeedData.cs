@@ -54,7 +54,7 @@ namespace NoodleApi.Models
                         ImgUrl = "https://www.arts2chine.fr/5658-thickbox_default/soupe-vermicelles-de-riz-mama-pho-ga-poulet-55g.jpg",
                         Country = "Thailand",
                         Flavor = "Chicken",
-                        Description = "Pho Ga Rice Noodles with Artificial Chicken Flavor is a quick and easy meal solution whenever you're hungry or craving some Pho. The authentic chicken flavored broth, mixed with a hint of basil and lime, creates an aromatic and savory broth that's perfect for a cold day. With its unique flavor profile unlike any other noodles you've tried, Pho Ga Instant Noodles is the perfect way to try them out. With a simple linguine-shaped rice noodle and its flavorful soup mix, it's as simple as adding water to prepare your meal. With only 240 calories and 0 grams of trans-fat per packet, this is a great choice when you're in need of a quick and easy meal at home. p Mama Pho Ga, 2.29 oz"
+                        Description = "Pho Ga Rice Noodles with Artificial Chicken Flavor is a quick and easy meal solution whenever you're hungry or craving some Pho. The authentic chicken flavored broth, mixed with a hint of basil and lime, creates an aromatic and savory broth that's perfect for a cold day. With its unique flavor profile unlike any other noodles you've tried, Pho Ga Instant Noodles is the perfect way to try them out. With a simple linguine-shaped rice noodle and its flavorful soup mix, it's as simple as adding water to prepare your meal. With only 240 calories and 0 grams of trans-fat per packet, this is a great choice when you're in need of a quick and easy meal at home."
                     },
 
                     new Noodle
@@ -65,7 +65,8 @@ namespace NoodleApi.Models
                         Country = "Japan",
                         Flavor = "Oriental",
                         Description = "Oodles of Noodles. 0 g Trans fat. Cooks in 3 minutes. Nissin Top Ramen is America's Original Ramen Noodle Soup and a family favorite since 1970. Top Ramen, for the very best in Ramen Noodle Soup."
-                    });
+                    }
+                    );
                 context.SaveChanges();
             }
         }
