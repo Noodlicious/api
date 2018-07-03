@@ -39,7 +39,7 @@ namespace NoodleApi.Controllers
         /// <param name="id">The noodle's ID</param>
         /// <returns>A noodle with a matching ID.</returns>
         [HttpGet("{id}", Name = "GetNoodle")]
-        public async Task<ActionResult<Noodle>> GetById(long id)
+        public async Task<ActionResult<Noodle>> GetById(int id)
         {
             var noodle = await _context.Noodles.FindAsync(id);
             if (noodle == null) return NotFound();
@@ -67,13 +67,12 @@ namespace NoodleApi.Controllers
         /// <param name="noodle">A noodle object with updated information.</param>
         /// <returns>A 204 response (if the ID is found).</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, [FromBody]Noodle noodle)
+        public async Task<IActionResult> Update(int id, [FromBody]Noodle noodle)
         {
             var dbNoodle = await _context.Noodles.FindAsync(id);
             if (dbNoodle == null) return NotFound();
 
-            if (noodle.Brand != null) dbNoodle.Brand = noodle.Brand;
-            if (noodle.Country != null) dbNoodle.Country = noodle.Country;
+            //if (noodle.BrandId != null) dbNoodle.BrandId = noodle.BrandId;
             if (noodle.Flavor != null) dbNoodle.Flavor = noodle.Flavor;
             if (noodle.ImgUrl != null) dbNoodle.ImgUrl = noodle.ImgUrl;
             if (noodle.Name != null) dbNoodle.Name = noodle.Name;
@@ -90,7 +89,7 @@ namespace NoodleApi.Controllers
         /// <param name="id">The ID of the noodle to be removed.</param>
         /// <returns>A 204 response (if the ID is found).</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(int id)
         {
             var noodle = await _context.Noodles.FindAsync(id);
             if (noodle == null) return NotFound();

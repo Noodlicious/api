@@ -14,5 +14,6 @@ namespace NoodleApi.Models
         }
 
         public DbSet<Noodle> Noodles { get; set; }
+        public DbSet<Brand> Brands { get; set; }
     }
 }

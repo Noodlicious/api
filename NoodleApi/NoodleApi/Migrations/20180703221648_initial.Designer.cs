@@ -9,8 +9,8 @@ using NoodleApi.Models;
 namespace NoodleApi.Migrations
 {
     [DbContext(typeof(NoodleContext))]
-    [Migration("20180702170938_Initial")]
-    partial class Initial
+    [Migration("20180703221648_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,25 +20,38 @@ namespace NoodleApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("NoodleApi.Models.Noodle", b =>
+            modelBuilder.Entity("NoodleApi.Models.Brand", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Brand");
-
                     b.Property<string>("Country");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("NoodleApi.Models.Noodle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandId");
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Flavor");
 
                     b.Property<string>("ImgUrl");
 
-                    b.Property<long>("Likes");
-
-                    b.Property<string>("Name");
-
-                    b.Property<long>("Ratings");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
