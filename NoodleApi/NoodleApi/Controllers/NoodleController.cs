@@ -72,8 +72,7 @@ namespace NoodleApi.Controllers
             var dbNoodle = await _context.Noodles.FindAsync(id);
             if (dbNoodle == null) return NotFound();
 
-            if (noodle.Brand != null) dbNoodle.Brand = noodle.Brand;
-            if (noodle.Country != null) dbNoodle.Country = noodle.Country;
+            //if (noodle.BrandId != null) dbNoodle.BrandId = noodle.BrandId;
             if (noodle.Flavor != null) dbNoodle.Flavor = noodle.Flavor;
             if (noodle.ImgUrl != null) dbNoodle.ImgUrl = noodle.ImgUrl;
             if (noodle.Name != null) dbNoodle.Name = noodle.Name;
