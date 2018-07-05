@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NoodleApi.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace NoodleApi.Controllers
 {
     [Route("api/noodle")]
@@ -43,6 +41,8 @@ namespace NoodleApi.Controllers
         [HttpGet("{id}", Name = "GetNoodle")]
         public async Task<ActionResult<Noodle>> GetById(int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var noodle = await _context.Noodles.FindAsync(id);
             if (noodle == null) return NotFound();
             return noodle;
@@ -57,6 +57,7 @@ namespace NoodleApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Noodle noodle)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             await _context.Noodles.AddAsync(noodle);
             await _context.SaveChangesAsync();
 
@@ -73,6 +74,7 @@ namespace NoodleApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]Noodle noodle)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             var dbNoodle = await _context.Noodles.FindAsync(id);
             if (dbNoodle == null) return NotFound();
 
@@ -96,6 +98,7 @@ namespace NoodleApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             var noodle = await _context.Noodles.FindAsync(id);
             if (noodle == null) return NotFound();
 

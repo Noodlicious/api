@@ -41,6 +41,7 @@ namespace NoodleApi.Controllers
         [HttpGet("{id}", Name = "GetBrand")]
         public async Task<ActionResult<Brand>> GetByID(int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             Brand brand = await _context.Brands.FindAsync(id);
             //if there are no brands, return a NotFound message
             if (brand == null) return NotFound();
@@ -55,7 +56,9 @@ namespace NoodleApi.Controllers
         /// <returns>CreatedAtRoute returns a 201 for a a POST that creates a new resoure on the server</returns>
         [HttpPost()]
         public async Task<IActionResult> Create([FromBody]Brand brand)
-        {   //BrandExists is a helper method.  Look at the very bottom for more details
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            //BrandExists is a helper method.  Look at the very bottom for more details
             if (BrandExists(brand.Name)) return BadRequest();
 
             await _context.Brands.AddAsync(brand);
@@ -74,6 +77,7 @@ namespace NoodleApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]Brand brand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             Brand dbBrand = await _context.Brands.FindAsync(id);
             if (dbBrand == null) return NotFound();
             //if the country is not null, set that country to its reference, dbCountry
@@ -99,6 +103,7 @@ namespace NoodleApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             Brand brand = _context.Brands.Find(id);
             if (brand == null) return NotFound();
 
