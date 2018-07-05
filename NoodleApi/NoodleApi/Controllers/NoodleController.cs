@@ -25,6 +25,7 @@ namespace NoodleApi.Controllers
 
         /// <summary>
         /// Gets a list of all noodles in the database.
+        /// Test for this is called CanGetAllNoodle()
         /// </summary>
         /// <returns>A list of noodles.</returns>
         [HttpGet]
@@ -35,6 +36,7 @@ namespace NoodleApi.Controllers
 
         /// <summary>
         /// Gets a noodle by its ID.
+        /// Test for this is called CanGetNoodleByID()
         /// </summary>
         /// <param name="id">The noodle's ID</param>
         /// <returns>A noodle with a matching ID.</returns>
@@ -48,6 +50,7 @@ namespace NoodleApi.Controllers
 
         /// <summary>
         /// Adds a noodle to the database.
+        /// Test for this is called CanCreateNewNoodle()
         /// </summary>
         /// <param name="noodle">The noodle being added.</param>
         /// <returns>A 201 response.</returns>
@@ -62,6 +65,7 @@ namespace NoodleApi.Controllers
 
         /// <summary>
         /// Updates a noodle's information.
+        /// Test for this is called CanUpdateNoodle()
         /// </summary>
         /// <param name="id">The ID of the noodle being updated.</param>
         /// <param name="noodle">A noodle object with updated information.</param>
@@ -85,6 +89,7 @@ namespace NoodleApi.Controllers
 
         /// <summary>
         /// Removes a noodle from the database.
+        /// Test for this is called CanDeleteNoodleByID()
         /// </summary>
         /// <param name="id">The ID of the noodle to be removed.</param>
         /// <returns>A 204 response (if the ID is found).</returns>
