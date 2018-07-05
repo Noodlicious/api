@@ -3,14 +3,16 @@
 ## Overview
 The Noodilicious API is built on .NET Core 2.1 and resides [here](https://noodliciousapi.azurewebsites.net).
 For the curious programmer noodlr interested in knowing more about instant
-ramen optios, this application programming interface (API) will send requests to the
+ramen options, this application programming interface (API) will send requests to the
 Noodlicious database and returns a list of options.  
 
 The Noodlicious API is fully capable of allowing new noodles and brands to be added 
 because us mere mortals have not had the chance to try all there is in the noodle realm.  
+
 If any noodles or brands are mislabeled in our database, the Noodlicious 
-API will allow for updates to that particular entry.  Finally, should 
-a noodle be discontinued or a brand disappears, the Noodlicious API is able to
+API will allow for updates to that particular entry.  
+
+Finally, should a noodle be discontinued or a brand disappears, the Noodlicious API is able to
 delete that noodle or brand from the database.
 
 A seed data file is used to keep the database consistently populated.
@@ -59,11 +61,12 @@ which is what the Noodlicious API is using for documentation.
 #### GET all brands:
 
 **localhost:yourPortNumber/api/brand** or
+
 **https://noodliciousapi.azurewebsites.net/api/brand**
 
-![Get All Brands](/Assets/getBrang.png)
-
 Click "Try It Out" and then "Execute" in order to see all the brands:
+
+![Get All Brands](/Assets/getBrand.png)
 
 ![See All Brands](/Assets/getBrandJSON.png)
 
@@ -71,6 +74,7 @@ Click "Try It Out" and then "Execute" in order to see all the brands:
 #### GET a brand by ID:
 
 **localhost:yourPortNumber/api/brand/`{id}`**
+
 **https://noodliciousapi.azurewebsites.net/api/brand/{id}**
 
 where id is the id of a brand
@@ -91,6 +95,7 @@ Use 2 for this example:
 #### POST a new brand:
 
 **localhost:yourPortNumber/api/brand** or
+
 **https://noodliciousapi.azurewebsites.net/api/brand**
 
 Click "Try It Out":
@@ -111,13 +116,14 @@ Swagger will show the new entry:
 #### PUT/Update a Brand by ID:
 
 **localhost:yourPortNumber/api/brand/`{id}`**
+
 **https://noodliciousapi.azurewebsites.net/api/brand/{id}**
 
 where id is the id of a brand
 
 Click "Try It Out":
 
-![Update A Brand](/Assets/updateBrang.png)
+![Update A Brand](/Assets/updateBrand.png)
 
 Let's update the SamYang example we created earlier.  Type the name in ALL
 CAPS and let's say they're a North Korean company.  The ID is needed for this
@@ -126,7 +132,7 @@ section:
 
 ![Update A Brand Example](/Assets/updateBrandEx.png)
 
-Go back to the "GET a brand by ID" direction to check up on the update:
+Go back to the "GET a brand by ID" direction to check the update:
 
 ![Check Update](/Assets/checkUpdate.png)
 
@@ -137,6 +143,7 @@ The response shows that SamYang has been updated:
 #### DELETE a Brand by ID:
 
 **localhost:yourPortNumber/api/brand/`{id}`**
+
 **https://noodliciousapi.azurewebsites.net/api/brand/{id}**
 
 where id is the id of a brand
@@ -152,13 +159,14 @@ See if it's still there by following the directions for
 
 SAMYANG is no longer in the list of brands:
 
-![List After Deletion](/Assts/deleteBrandWorks.png)
+![List After Deletion](/Assets/deleteBrandWorks.png)
 
 ---
 ## API Noodle Endpoint Routes and Walk Through
 #### GET all noodles:
 
 **localhost:yourPortNumber/api/noodle** or
+
 **https://noodliciousapi.azurewebsites.net/api/noodle**
 
 ![Get All Noodle](/Assets/getAllNoodle.png)
@@ -170,6 +178,7 @@ Click "Try It Out" and then "Execute" in order to see all the noodles:
 #### GET a noodle by ID:
 
 **localhost:yourPortNumber/api/noodle`{id}`** or
+
 **https://noodliciousapi.azurewebsites.net/api/noodle/{id}**
 
 where id is the id of a brand
@@ -188,9 +197,8 @@ The information for brand #4 will be displayed in a JSON format:
 #### POST a new noodle
 
 **localhost:yourPortNumber/api/noodle** or
-**https://noodliciousapi.azurewebsites.net/api/noodle**
 
-![Post a New Noodle](/Assets/postNoodle.png)
+**https://noodliciousapi.azurewebsites.net/api/noodle**
 
 Click "Try It Out":
 
@@ -203,7 +211,7 @@ in a info for a new noodle.
 
 ![Post New Noodle Example](/Assets/postNoodleEx.png)
 
-Swagger will show the new entry:
+See if it's there by following the "GET a noodle by ID" directions:
 
 ![Post New Noodle Response](/Assets/ViewAddedNoodle.png)
 
@@ -211,6 +219,7 @@ Swagger will show the new entry:
 #### PUT/Update a noodle by ID:
 
 **localhost:yourPortNumber/api/noodle/`{id}`**
+
 **https://noodliciousapi.azurewebsites.net/api/noodle/{id}**
 
 where id is the id of a noodle
@@ -234,6 +243,7 @@ The response shows that 'Cup of Noodle' is now 'Bowl of Noodle':
 #### Delete a noodle by ID:
 
 **localhost:yourPortNumber/api/noodle/`{id}`**
+
 **https://noodliciousapi.azurewebsites.net/api/noodle/{id}**
 
 where id is the id of a noodle
